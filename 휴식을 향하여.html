@@ -1,0 +1,342 @@
+<html>
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비밀번호 입력</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<style>
+.box{
+	height:100%;
+	width:100%;
+	position: absolute;
+	background-image: url("./배경.png");
+	background-size: cover;
+top:0;
+left:0;
+z-index:-100;
+opacity:0.2;
+}
+#box2{
+	height:100%;
+	width:100%;
+	position: absolute;
+	background-image: url("./힌트1.png");
+	background-size: cover;
+	top:0;
+	left:0;
+	z-index:100;
+	display:none;
+}
+#x{
+	position: absolute;
+	top:0;
+	left:20px;
+	z-index:110;
+	display:none;
+	font-weight:bolder;
+	font-size:100px;
+}
+table{
+	margin : auto;
+	width:1000px;
+	border : 2px solid black;
+	padding:30px;
+}
+td{
+	padding: 15px;
+	text-align:center;
+	height: 50px;
+}
+.all{
+	text-align:center;
+	padding-top:200px;
+	position: relative;
+}
+td > .num {
+	width:100%;
+}
+.num > h3 {
+	margin:auto;
+	font-size: 100px;
+}
+td > h3 {
+	margin:auto;
+	font-size: 30px;
+}
+#btn{
+	width:450px;
+	height:50px;
+	font-size:25px;
+	font-weight:bolder;
+	margin:10px;
+}
+#btn2{
+	width:450px;
+	height:50px;
+	font-size:25px;
+	font-weight:bolder;
+	margin:10px;
+}
+.modal .btn{cursor: pointer;border: 1px solid #999999;text-align: center;border-radius: 5px;outline: none;font-weight: 500;}
+.dimLayer{display: block;width: 100%;background-color: rgba(0, 0, 0, 0.3);position: fixed;left: 0;top: 0px;margin: 0;padding: 0;z-index: 9998;}
+.modal{width: 600px;height: 252px;border-radius: 10px;padding: 80px 24px;box-sizing: border-box;text-align: center;}
+.modal-section{background: #ffffff;box-sizing: border-box;display: none;position: absolute;top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);-moz-transform: translate(-50%, -50%);-o-transform: translate(-50%, -50%);transform: translate(-50%, -50%);display: none;z-index: 9999;}
+.menu_msg{font-size: 21px;font-weight: 500;}
+.enroll_box p{padding-bottom: 56px;}
+.gray_btn {width: 90px;background: #ffffff;color: #999999;height: 36px;line-height: 36px;transition: 0.5s;font-size: 17px;}
+.pink_btn {width: 90px;background: #ed197a;color: #fff;height: 36px;line-height: 36px;transition: 0.5s;font-size: 17px;border: none;}
+</style>
+</head>
+<body>
+<div class='box'>
+</div>
+<div id='box2'>
+	<span id='x' onclick="close_img()">X</span>
+</div>
+<div class='all'>
+<div style="margin:100px;">
+<h1 style="font-size:50px;">Round1. 정답 입력</h1>
+</div>
+<table>
+	<tr>
+		<td onclick="up1()">
+			<h3>▲</h3>
+		</td>
+		<td onclick="up2()">
+			<h3>▲</h3>
+		</td>
+		<td onclick="up3()">
+			<h3>▲</h3>
+		</td>
+		<td onclick="up4()">
+			<h3>▲</h3>
+		</td>
+		<td onclick="up5()">
+			<h3>▲</h3>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<div class="num"><h3 id="num1">0</h3></div>
+		</td>
+		<td>
+			<div class="num"><h3 id="num2">0</h3></div>
+		</td>
+		<td>
+			<div class="num"><h3 id="num3">0</h3></div>
+		</td>
+		<td>
+			<div class="num"><h3 id="num4">0</h3></div>
+		</td>
+		<td>
+			<div class="num"><h3 id="num5">0</h3></div>
+		</td>
+	</tr>
+	<tr>
+		<td onclick="down1()">
+			<h3>▼</h3>
+		</td>
+		<td onclick="down2()">
+			<h3>▼</h3>
+		</td>
+		<td onclick="down3()">
+			<h3>▼</h3>
+		</td>
+		<td onclick="down4()">
+			<h3>▼</h3>
+		</td>
+		<td onclick="down5()">
+			<h3>▼</h3>
+		</td>
+	</tr>
+</table>
+	<div style="margin:100px; display:flex; justify-content: center;">
+		<button type='button' id='btn2' onclick="doAction2()" class="pink_btn">힌트보기</button>
+		<form action='휴식을 향하여1.html' name="next">
+		<button type='button' id='btn' onclick="doAction()" class="pink_btn">확인</button>
+		</form>
+	</div>
+
+</div>
+
+<section class="modal modal-section type-alert">
+            <div class="enroll_box">
+                <p class="menu_msg"></p>
+            </div>
+            <div class="enroll_btn">
+                <button class="btn pink_btn modal_close">확인</button>
+            </div>
+
+
+<script>
+function close_img() {
+	var box = document.getElementById("box2") ;
+	var x = document.getElementById("x") ;
+	box.style.display = 'none';
+	x.style.display = 'none';
+}
+function doAction() {
+	let num1 = document.getElementById("num1").innerText ;
+	let num2 = document.getElementById("num2").innerText ;
+	let num3 = document.getElementById("num3").innerText ;
+	let num4 = document.getElementById("num4").innerText ;
+	let num5 = document.getElementById("num5").innerText ;
+	if( num1 == "4" & num2 == "4" & num3 == "5" & num4 == "0" & num5 == "8"){
+		var form = document.next;
+    		form.submit();
+	} else{
+		action_popup.alert("정답이 아닙니다!!!");
+	}
+    }
+function doAction2() {
+	var box = document.getElementById("box2") ;
+	var x = document.getElementById("x") ;
+	box.style.display = 'block';
+	x.style.display = 'block';
+    }
+function up1() {
+      let num = document.getElementById("num1").innerText ;
+      num = parseInt(num) + 1;
+if (num == 10){
+	num=0;
+}
+      document.getElementById("num1").innerText = num;
+    }
+function up2() {
+      let num = document.getElementById("num2").innerText ;
+      num = parseInt(num) + 1;
+if (num == 10){
+	num=0;
+}
+      document.getElementById("num2").innerText = num;
+    }
+function up3() {
+      let num = document.getElementById("num3").innerText ;
+      num = parseInt(num) + 1;
+if (num == 10){
+	num=0;
+}
+      document.getElementById("num3").innerText = num;
+    }
+function up4() {
+      let num = document.getElementById("num4").innerText ;
+      num = parseInt(num) + 1;
+if (num == 10){
+	num=0;
+}
+      document.getElementById("num4").innerText = num;
+    }
+function up5() {
+      let num = document.getElementById("num5").innerText ;
+      num = parseInt(num) + 1;
+if (num == 10){
+	num=0;
+}
+      document.getElementById("num5").innerText = num;
+    }
+
+function down1() {
+      let num = document.getElementById("num1").innerText ;
+      num = parseInt(num) - 1;
+if (num == -1){
+	num=9;
+}
+      document.getElementById("num1").innerText = num;
+    }
+function down2() {
+      let num = document.getElementById("num2").innerText ;
+      num = parseInt(num) - 1;
+if (num == -1){
+	num=9;
+}
+      document.getElementById("num2").innerText = num;
+    }
+function down3() {
+      let num = document.getElementById("num3").innerText ;
+      num = parseInt(num) - 1;
+if (num == -1){
+	num=9;
+}
+      document.getElementById("num3").innerText = num;
+    }
+function down4() {
+      let num = document.getElementById("num4").innerText ;
+      num = parseInt(num) - 1;
+if (num == -1){
+	num=9;
+}
+      document.getElementById("num4").innerText = num;
+    }
+function down5() {
+      let num = document.getElementById("num5").innerText ;
+      num = parseInt(num) - 1;
+if (num == -1){
+	num=9;
+}
+      document.getElementById("num5").innerText = num;
+    }
+
+    $(".modal_close").on("click", function () {
+        action_popup.close(this);
+    });
+
+var action_popup = {
+    timer: 500,
+    confirm: function (txt, callback) {
+        if (txt == null || txt.trim() == "") {
+            console.warn("confirm message is empty.");
+            return;
+        } else if (callback == null || typeof callback != 'function') {
+            console.warn("callback is null or not function.");
+            return;
+        } else {
+            $(".type-confirm .btn_ok").on("click", function () {
+                $(this).unbind("click");
+                callback(true);
+                action_popup.close(this);
+            });
+            this.open("type-confirm", txt);
+        }
+    },
+
+    alert: function (txt) {
+        if (txt == null || txt.trim() == "") {
+            console.warn("confirm message is empty.");
+            return;
+        } else {
+            this.open("type-alert", txt);
+        }
+    },
+
+    open: function (type, txt) {
+        var popup = $("." + type);
+        popup.find(".menu_msg").text(txt);
+        $("body").append("<div class='dimLayer'></div>");
+        $(".dimLayer").css('height', $(document).height()).attr("target", type);
+        popup.fadeIn(this.timer);
+    },
+
+    close: function (target) {
+        var modal = $(target).closest(".modal-section");
+        var dimLayer;
+        if (modal.hasClass("type-confirm")) {
+            dimLayer = $(".dimLayer[target=type-confirm]");
+            $(".type-confirm .btn_ok").unbind("click");
+        } else if (modal.hasClass("type-alert")) {
+            dimLayer = $(".dimLayer[target=type-alert]")
+        } else {
+            console.warn("close unknown target.")
+            return;
+        }
+        modal.fadeOut(this.timer);
+        setTimeout(function () {
+            dimLayer != null ? dimLayer.remove() : "";
+        }, this.timer);
+    }
+}
+
+</script>
+</body>
+</html>
