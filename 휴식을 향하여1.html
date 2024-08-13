@@ -13,6 +13,8 @@
 	position: absolute;
 	background-image: url("./배경.png");
 	background-size: cover;
+	background-position:center;
+	background-repeat:no-repeat;
 top:0;
 left:0;
 z-index:-100;
@@ -23,7 +25,9 @@ opacity:0.2;
 	width:100%;
 	position: absolute;
 	background-image: url("./힌트2.png");
-	background-size: cover;
+	background-size: contain;
+	background-position:center;
+	background-repeat:no-repeat;
 	top:0;
 	left:0;
 	z-index:100;
@@ -32,26 +36,25 @@ opacity:0.2;
 #x{
 	position: absolute;
 	top:0;
-	left:20px;
+	left:0;
 	z-index:110;
 	display:none;
 	font-weight:bolder;
-	font-size:100px;
+	font-size:50px;
+	margin:10px;
 }
 table{
 	margin : auto;
-	width:1000px;
+	width:50%;
 	border : 2px solid black;
-	padding:30px;
 }
 td{
-	padding: 15px;
 	text-align:center;
 	height: 50px;
 }
 .all{
 	text-align:center;
-	padding-top:200px;
+	padding-top:100px;
 	position: relative;
 }
 td > .num {
@@ -59,21 +62,22 @@ td > .num {
 }
 .num > h3 {
 	margin:auto;
-	font-size: 100px;
+	font-size: 50px;
+	padding:10px;
 }
 td > h3 {
 	margin:auto;
-	font-size: 30px;
+	font-size: 20px;
 }
 #btn{
-	width:450px;
+	width:40%;
 	height:50px;
 	font-size:25px;
 	font-weight:bolder;
 	margin:10px;
 }
 #btn2{
-	width:450px;
+	width:40%;
 	height:50px;
 	font-size:25px;
 	font-weight:bolder;
@@ -96,8 +100,8 @@ td > h3 {
 	<span id='x' onclick="close_img()">X</span>
 </div>
 <div class='all'>
-<div style="margin:100px;">
-<h1 style="font-size:50px;">Round2. 정답 입력</h1>
+<div style="margin:50px;">
+<h1 style="font-size:30px;">Round2. 정답 입력</h1>
 </div>
 <table>
 	<tr>
@@ -152,7 +156,7 @@ td > h3 {
 		</td>
 	</tr>
 </table>
-	<div style="margin:100px; display:flex; justify-content: center;">
+	<div style="margin:10px; justify-content: center;">
 		<button type='button' id='btn2' onclick="doAction2()" class="pink_btn">힌트보기</button>
 		<form action='휴식을 향하여2.html' name="next">
 		<button type='button' id='btn' onclick="doAction()" class="pink_btn">확인</button>
